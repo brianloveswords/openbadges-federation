@@ -1,11 +1,9 @@
 const fs = require('fs');
 const express = require('express');
 const app = express();
+const path = require('path');
 
-app.get('/', function (req, res) {
-  res.setHeader('Content-Type', 'text/html');
-  res.send(fs.readFileSync(__dirname + '/index.html'));
-});
+app.use(express.static(path.join(__dirname, '/public')));
 
 const port = process.env['PORT'] || 3002;
 app.listen(port);

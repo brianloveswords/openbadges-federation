@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>This is Backpack {{ name }}</title>
+  <link rel="stylesheet" href="/foundation/css/foundation.css">
+
+</head>
+
+<body>
+	<div class="row">
+		<div class="large-12 columns">
+      <h1>This is Backpack <span style="color: #{{color}}">{{ name }}</span></h1>
+      <hr>
+
+      <div class="badges">
+        {% if badges.length %}
+          {% for badge in badges %}
+            <img src="{{badge}}">
+          {% endfor %}
+        {% else %}
+          <h3>No badges yet</h3>
+        {% endif %}
+      </div>
+
+      <button id="js-register-backpack">Register Default Backpack</button>
+    </div>
+  </div>
+
+  <script src="http://localhost:5000/bundle.js"></script>
+  <script>
+    const btn = document.getElementById('js-register-backpack');
+    btn.addEventListener('click', function() {
+      OpenBadges.register()
+    }, false);
+  </script>
+
+</body>
+
+</html>

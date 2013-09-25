@@ -1,18 +1,9 @@
 const fs = require('fs');
 const express = require('express');
 const app = express();
+const path = require('path');
 
-function serve(file, type) {
-  app.get(file, function (req, res) {
-    res.setHeader('Content-Type', type);
-    res.send(fs.readFileSync(__dirname + file));
-  });
-};
-
-serve('/lib.js', 'text/javascript');
-serve('/bundle.js', 'text/javascript');
-serve('/shim.js', 'text/javascript');
-serve('/shim.html', 'text/html');
+app.use(express.static(path.join(__dirname, '/public')));
 
 const port = process.env['PORT'] || 5000;
 app.listen(port);
